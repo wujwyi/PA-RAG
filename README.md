@@ -1,1 +1,1 @@
-# Towards RAG Requirements Aligned Generator via Multiple Perspective Preference Alignment
+# PA-RAG: RAG Alignment via Multi-Perspective Preference Optimization
