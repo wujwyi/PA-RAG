@@ -24,3 +24,32 @@ The question used for constracting our training data are sourced from  ASQA, Web
 The data for evaluation is available at  
 https://drive.google.com/file/d/1vn5O_PtUnV3rOC7CAbSsZITG6NQ1EZtx/view?usp=drive_link.  
 The qustions are sourced from the test split from ASQA, WebQustions, Natural Questions, and TriviaQA. The retrieved documents are retrieved by dense retriever [GTR](https://huggingface.co/sentence-transformers/gtr-t5-xxl) from Wikipedia dump from December 20, 2018.
+
+# Training
+We use the framework [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) to train our models. We selected three general LLMs as the base RAG generator: [Llama2-7b-chat](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf), [Llama2-13b-chat](https://huggingface.co/meta-llama/Llama-2-13b-chat-hf), [Llama3-8b-instruct](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct).  
+We utilized full fine-tuning for all training stages and employed the same hyperparameter settings for all models.  
+During the instruction fine-tuning phase, we set the batch size to 128, the learning rate to 2e-5, and trained for one epoch.  
+In the preference optimization phase, we set the batch size to 64 and trained for one epoch for all stages. For the optimization stages of response informativeness and response robustness, the learning rate is 2e-6. In the citation quality optimization stage, the learning rate is 2e-7.
+
+
+
+# Inference
+Inference with zero-shot setting
+```
+CUDA_VISIBLE_DEVICES=0 python inference/inference_vllm.py \
+    --model model_path \
+    --prompt_file prompts/default.json \
+    --eval_file data_path (e.g.data/asqa_dev.json) \
+    --output_file output_path \
+    --shot 0 \
+    --ndoc 5 \
+```
+
+
+
+# Evaluation
+Download the NLI model [TRUE](https://huggingface.co/google/t5_xxl_true_nli_mixture) before evaluate.
+
+```
+CUDA_VISIBLE_DEVICES=0 python inference/eval.py --f response_to_eval_path --no_rouge --citation
+```
