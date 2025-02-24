@@ -22,7 +22,7 @@ The question used for constracting our training data are sourced from  ASQA, Web
 
 ## Evaluation data
 The data for evaluation is available at  
-https://drive.google.com/file/d/1vn5O_PtUnV3rOC7CAbSsZITG6NQ1EZtx/view?usp=drive_link.  
+https://drive.google.com/file/d/1g3tCcWhAOTzGwldLOjCvtwJ_4YaIK-rj/view?usp=drive_link.  
 The qustions are sourced from the test split from ASQA, WebQustions, Natural Questions, and TriviaQA. The retrieved documents are retrieved by dense retriever [GTR](https://huggingface.co/sentence-transformers/gtr-t5-xxl) from Wikipedia dump from December 20, 2018.
 
 # Training
