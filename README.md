@@ -1,8 +1,10 @@
 # PA-RAG: RAG Alignment via Multi-Perspective Preference Optimization
 
 🎉🎉🎉 PA-RAG is accepted by NAACL 2025!
+
 Paper Link: https://arxiv.org/pdf/2412.14510  
-Huggingface Link: https://huggingface.co/collections/wuqiong1/pa-rag-67e7cdec6fc1d474256dc4e9
+Models and training data are available at [Huggingface Link](https://huggingface.co/collections/wuqiong1/pa-rag-67e7cdec6fc1d474256dc4e9)
+
 
 # Dataset
 ## Training data
